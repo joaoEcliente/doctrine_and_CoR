@@ -1,0 +1,15 @@
+{
+    "name": "user/doctrine_and_co-r",
+    "autoload": {
+        "psr-4": {
+            "User\\DoctrineAndCoR\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "João Damasio",
+            "email": "joaodamasio039@gmail.com"
+        }
+    ],
+    "require": {}
+}
