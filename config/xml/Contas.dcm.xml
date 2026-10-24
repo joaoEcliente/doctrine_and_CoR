@@ -4,14 +4,13 @@
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
 >
-      <entity name="Product" table="products">
-          <id name="id" type="integer">
+      <entity name="Entity/Contas" table="contas">
+          <id name="id" type="intenger">
               <generator strategy="AUTO" />
           </id>
           <field name="titular" type="string" />
-          <field name="titular" type="string" />
           <field name="chave_pix" type="string" />
-          <field name="saldo" type="int" />
+          <field name="saldo" type="intenger" />
 
       </entity>
 </doctrine-mapping>
