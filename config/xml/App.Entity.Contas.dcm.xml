@@ -6,17 +6,12 @@
     <entity name="App\Entity\Contas" table="contas">
 
         <id name="id" type="bigint" column="id">
-            <generator strategy="NONE"/>
+            <generator strategy="IDENTITY"/>
         </id>
 
         <field name="titular" type="string" length="255" nullable="false"/>
 
-        <field name="chavePix"
-               column="chave_pix"
-               type="string"
-               length="100"
-               unique="true"
-               nullable="false"/>
+        <field name="chavePix" column="chave_pix" type="string" length="100" unique="true" nullable="false"/>
 
         <field name="saldo" type="integer" nullable="false"/>
 

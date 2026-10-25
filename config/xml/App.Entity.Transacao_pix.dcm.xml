@@ -6,7 +6,7 @@
     <entity name="App\Entity\Transacao_pix" table="transacao_pix">
 
         <id name="id" type="bigint" column="id">
-            <generator strategy="NONE"/>
+            <generator strategy="IDENTITY"/>
         </id>
 
         <field name="valor" type="integer" nullable="false"/>
