@@ -15,14 +15,18 @@ class KeyChain{
         $this->entityManager = $entityManager;
     }
 
-    public function KeyChan()
+    public function Handler()
     {
         (new ValidarValor())
                 ->setProximo((new ValidarContas($this->entityManager)))
                 ->setProximo((new ValidarSaldo()))
             ;
 
-        $dados = [];
+        $dados = [
+                  'valor' => 50000,
+                  'conta_origem' => 1,
+                  'conta_destino' => 2
+                 ];
 
         if ($validarValor->processar($dados)) {
             echo "Todas as validações passaram!";
