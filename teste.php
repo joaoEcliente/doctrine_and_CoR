@@ -1,45 +1,26 @@
 <?php
 
-use App\Entity\Contas;
-use App\Entity\Transacao_pix;
+require_once __DIR__ . '/bootstrap.php';
 
-require_once 'src/Entity/contas.php';
-require_once 'src/Entity/transacao_pix.php';
-require_once 'bootstrap.php';
+use App\Chain\ValidarValor;
+use App\Chain\ValidarContas;
+use App\Chain\ValidarSaldo;
 
-$contaOrigem = new Contas();
-$contaOrigem->setTitular('João Silva')
-            ->setChavePix('joao@email.com')
-            ->setSaldo(100000);
+$validarValor = new ValidarValor();
+$validarContas = new ValidarContas($entityManager);
+$validarSaldo = new ValidarSaldo();
 
-$contaDestino = new Contas();
-$contaDestino->setTitular('Maria Souza')
-             ->setChavePix('maria@email.com')
-             ->setSaldo(50000);
+$validarValor->setProximo($validarContas);
+$validarContas->setProximo($validarSaldo);
 
-$valorTransferencia = 15000;
+$dados = [
+    'valor' => 50000,
+    'conta_origem' => 1,
+    'conta_destino' => 2
+];
 
-if ($contaOrigem->getSaldo() >= $valorTransferencia) {
-    $contaOrigem->setSaldo($contaOrigem->getSaldo() - $valorTransferencia);
-    $contaDestino->setSaldo($contaDestino->getSaldo() + $valorTransferencia);
-
-    $transacao = new Transacao_pix();
-    $transacao->setValor($valorTransferencia)
-              ->setStatus('T')
-              ->setDataPix(new DateTime())
-              ->setContaOrigem($contaOrigem)
-              ->setContaDestino($contaDestino);
-
-    $entityManager->persist($contaOrigem);
-    $entityManager->persist($contaDestino);
-    $entityManager->persist($transacao);
-
-    $entityManager->flush();
-
-    echo "Transação realizada com sucesso!\n";
-    echo "Novo saldo da origem: R$ " . ($contaOrigem->getSaldo() / 100) . "\n";
-    echo "Novo saldo do destino: R$ " . ($contaDestino->getSaldo() / 100) . "\n";
-
+if ($validarValor->processar($dados)) {
+    echo "Todas as validações passaram!";
 } else {
-    echo "Saldo insuficiente para realizar a transação.";
+    echo "Transferência bloqueada!";
 }
