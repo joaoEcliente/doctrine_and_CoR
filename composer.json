@@ -1,7 +1,9 @@
 {
     "name": "user/doctrine_and_co-r",
     "autoload": {
-        "psr-0": {"": "src/"}
+        "psr-4": {
+            "App\\Entity\\": "src/Entity/"
+        }
     },
     "authors": [
         {

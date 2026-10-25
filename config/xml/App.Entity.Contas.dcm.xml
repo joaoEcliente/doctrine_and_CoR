@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\Contas" table="contas">
+
+        <id name="id" type="bigint" column="id">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="titular" type="string" length="255" nullable="false"/>
+
+        <field name="chavePix"
+               column="chave_pix"
+               type="string"
+               length="100"
+               unique="true"
+               nullable="false"/>
+
+        <field name="saldo" type="integer" nullable="false"/>
+
+    </entity>
+</doctrine-mapping>

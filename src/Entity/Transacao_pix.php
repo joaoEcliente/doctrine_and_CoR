@@ -1,7 +1,12 @@
 <?php
 
+namespace App\Entity;
+
+use DateTimeInterface;
+use App\Entity\Contas;
+
 class Transacao_pix{
-    private ?int $id;
+    private ?string $id;
     private ?int $valor;
     private ?string $status;
     private ?DateTimeInterface $dataPix;
@@ -9,7 +14,7 @@ class Transacao_pix{
     private ?Contas $contaOrigem;
     private ?Contas $contaDestino;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }

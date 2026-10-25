@@ -1,13 +1,15 @@
 <?php
 
+namespace App\Entity;
+
 class Contas
 {
-    private ?int $id = null;
+    private ?string $id = null;
     private string $titular;
     private string $chavePix;
     private int $saldo;
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
