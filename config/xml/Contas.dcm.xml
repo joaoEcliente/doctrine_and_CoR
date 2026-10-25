@@ -1,16 +1,14 @@
-<!-- config/xml/Product.dcm.xml -->
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
 >
-      <entity name="Entity/Contas" table="contas">
-          <id name="id" type="intenger">
-              <generator strategy="AUTO" />
-          </id>
-          <field name="titular" type="string" />
-          <field name="chave_pix" type="string" />
-          <field name="saldo" type="intenger" />
-
-      </entity>
+    <entity name="Entity\Contas" table="contas">
+        <id name="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="titular" type="string" />
+        <field name="chavePix" type="string" />
+        <field name="saldo" type="integer" />
+    </entity>
 </doctrine-mapping>

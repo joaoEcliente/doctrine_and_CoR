@@ -3,15 +3,22 @@
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
 >
-      <entity name="Entity\Transacao_pix" table="transacao_pix">
-          <id name="id" type="integer">
-              <generator strategy="AUTO" />
-          </id>
-          <field name="conta_origem_id" type="integer" />
-          <field name="conta_destino_id" type="integer" />
-          <field name="valor" type="integer" />
-          <field name="status" type="string" length="1" nullable="false" />
-          <field name="data_Pix" type="datetime" nullable="false" />
-          
-      </entity>
+    <entity name="Entity\Transacao_pix" table="transacao_pix">
+        <id name="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+        
+        <field name="valor" type="integer" />
+        <field name="status" type="string" length="1" nullable="false" />
+        <field name="dataPix" type="datetime" nullable="false" />
+        
+        <many-to-one field="contaOrigem" target-entity="Entity\Contas">
+            <join-column name="conta_origem_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+
+        <many-to-one field="contaDestino" target-entity="Entity\Contas">
+            <join-column name="conta_destino_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+        
+    </entity>
 </doctrine-mapping>
