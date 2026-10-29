@@ -22,6 +22,6 @@ ALTER TABLE transacao_pix ADD CONSTRAINT fk_conta_origem FOREIGN KEY (conta_orig
 ALTER TABLE transacao_pix ADD CONSTRAINT fk_conta_destino FOREIGN KEY (conta_destino_id) REFERENCES contas(id);
 
 INSERT INTO contas (id, titular, chave_pix, saldo) VALUES
-(1, 'Ana Silva', 'ana.silva@email.com', 50000),     -- R$ 500,00
-(2, 'Bruno Souza', 'bruno.souza@email.com', 20000),   -- R$ 200,00
-(3, 'Carla Dias', 'carla.dias@email.com', 150050); -- R$ 1.500,50
+(1, 'Ana Silva', 'ana.silva@email.com', 50000),
+(2, 'Bruno Souza', 'bruno.souza@email.com', 20000),
+(3, 'Carla Dias', 'carla.dias@email.com', 150050);

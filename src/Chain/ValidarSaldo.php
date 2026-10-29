@@ -4,8 +4,10 @@ namespace App\Chain;
 
 class ValidarSaldo extends Handler
 {
-    public function processar(array $dados): bool
+    public function processar(?array $dados = null): bool
     {
+        echo "3. Validar Saldo\n";
+
         if (!isset($dados['conta_origem'])) {
             echo "Erro: conta de origem não encontrada.";
             return false;
@@ -16,13 +18,11 @@ class ValidarSaldo extends Handler
 
         if ($contaOrigem->getSaldo() < $valor) {
             echo "Erro: saldo insuficiente.";
-            return false;
+            die();
         }
 
-        if ($this->proximo !== null) {
-            return $this->proximo->processar($dados);
-        }
+        // var_dump($dados);exit;
+        return parent::processar($dados);
 
-        return true;
     }
 }

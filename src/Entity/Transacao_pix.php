@@ -4,22 +4,32 @@ namespace App\Entity;
 
 use DateTimeInterface;
 use App\Entity\Contas;
+use DateTime;
 
-class Transacao_pix{
-    private ?string $id;
-    private ?int $valor;
-    private ?string $status;
-    private ?DateTimeInterface $dataPix;
-
+class Transacao_pix
+{
+    private ?int $id;
+    private int $valor;
     private ?Contas $contaOrigem;
     private ?Contas $contaDestino;
+    private ?DateTimeInterface $dataPix = null;
+    
+    // private ?int $contaOrigem;
+    // private ?int $contaDestino;
+    
+    public function __construct(
+        private string $status = 'T',
+    )
+    {
+        $this->dataPix = new DateTime();
+    }
 
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getValor(): ?int
+    public function getValor(): int
     {
         return $this->valor;
     }
@@ -34,43 +44,47 @@ class Transacao_pix{
         return $this->dataPix;
     }
 
-    public function getContaOrigem(): ?Contas
-    {
-        return $this->contaOrigem;
-    }
-
-    public function getContaDestino(): ?Contas
-    {
-        return $this->contaDestino;
-    }
-
-    public function setValor(int $valor): self
+    public function setValor(int $valor)
     {
         $this->valor = $valor;
         return $this;
     }
 
-    public function setStatus(?string $status): self
+    public function setStatus(?string $status)
     {
         $this->status = $status;
         return $this;
     }
 
-    public function setDataPix(?DateTimeInterface $dataPix): self
+    public function setDataPix(?DateTimeInterface $dataPix)
     {
         $this->dataPix = $dataPix;
         return $this;
     }
 
-    public function setContaOrigem(?Contas $contaOrigem): self
+
+
+
+
+    public function ContaOrigem(?Contas $contaOrigem)
     {
+        // $id = $contaOrigem->getId();
+        // $this->contaOrigem = $id;
         $this->contaOrigem = $contaOrigem;
         return $this;
     }
 
-    public function setContaDestino(?Contas $contaDestino): self
+    public function ContaDestino(?Contas $contaDestino)
     {
+        // $id = $contaDestino->getId();
+        // $this->contaDestino = $id;
         $this->contaDestino = $contaDestino;
+        return $this;
+    }
+
+    public function setId(int $id): Transacao_pix
+    {
+        $this->id = $id;
         return $this;
     }
 }

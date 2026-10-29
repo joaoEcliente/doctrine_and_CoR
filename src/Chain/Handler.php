@@ -13,5 +13,13 @@ abstract class Handler
         return $proximo;
     }
 
-    abstract public function processar(array $dados): bool;
+    public function processar(?array $dados = null): bool
+    {
+        if(!$this->proximo){
+            return true;
+
+        }
+
+        return $this->proximo->processar($dados);
+    }
 }
