@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Services\KeyChain;
-use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
+
 class UserControl{
     // Dependency Injection
     public function __construct(private EntityManager $entityManager)
