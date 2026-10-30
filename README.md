@@ -1,4 +1,4 @@
-# Sistema de Pagamento PIX 'ficticio'
+# Sistema de Pagamento PIX 'Fictício'
 
 ## Sobre o Projeto
 
