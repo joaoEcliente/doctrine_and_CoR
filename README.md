@@ -60,10 +60,10 @@ Entrar no MySql e executar a sequência de comandos abaixo:
     $ composer install
 ```
 
-## 5. Declarar valor:
+## 4. Declarar valor:
  Entrar dentro de ```src/Services/KeyChain.php```, e declarar os valores que você deseja em  ```$dados = [...]```, ```$dados['valor']```está em formato de centavos, portanto, digite  o valor e os centavos para não ter conflito de valores.
 
-## 6. Agora é so executar, lembre-se de estar na raíz do projeto, para poder executar:
+## 5. Agora é so executar, lembre-se de estar na raíz do projeto, para poder executar:
 ```
     $ php index.php
 ```
