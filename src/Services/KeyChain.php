@@ -6,7 +6,6 @@ use App\Chain\RealizacaoPix;
 use App\Chain\ValidarContas;
 use App\Chain\ValidarSaldo;
 use App\Chain\ValidarValor;
-use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 
 class KeyChain {
@@ -17,8 +16,8 @@ class KeyChain {
     {
         $dados = [
                   'valor' => 100,
-                  'conta_origem' => 3,
-                  'conta_destino' => 3
+                  'conta_origem' => 1,
+                  'conta_destino' => 2
                  ];
         $chain =  new ValidarValor();
         $chain

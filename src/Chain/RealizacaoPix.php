@@ -17,13 +17,9 @@ class RealizacaoPix extends Handler {
         $conta_destino = $dados['conta_destino'];
         $valor = $dados['valor'];
 
-        // calcula o saldo atual de cada conta
-        $conta_origem_saldo = $conta_origem->getSaldo() - $valor;
-        $conta_destino_saldo = $conta_destino->getSaldo() + $valor;
-
         // Declara o novo saldo a cada conta
-        $conta_origem->setSaldo($conta_origem_saldo);
-        $conta_destino->setSaldo($conta_destino_saldo);
+        $conta_origem->setSaldo($conta_origem->getSaldo() - $valor);
+        $conta_destino->setSaldo($conta_destino->getSaldo() + $valor);
 
         // Transação informações
         $transacao = new Transacao_pix();
