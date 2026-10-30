@@ -16,9 +16,10 @@ class KeyChain {
     {
         $dados = [
                   'valor' => 100,
-                  'conta_origem' => 1,
+                  'conta_origem' => 3,
                   'conta_destino' => 2
                  ];
+
         $chain =  new ValidarValor();
         $chain
             ->setProximo((new ValidarContas($this->entityManager)))
@@ -28,6 +29,5 @@ class KeyChain {
 
         $chain->processar($dados);
 
-}
-
+    }
 }

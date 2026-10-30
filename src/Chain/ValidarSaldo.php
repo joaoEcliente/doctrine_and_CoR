@@ -10,13 +10,10 @@ class ValidarSaldo extends Handler
 
         if (!isset($dados['conta_origem'])) {
             echo "Erro: conta de origem não encontrada.";
-            return false;
+            die();
         }
 
-        $contaOrigem = $dados['conta_origem'];
-        $valor = $dados['valor'];
-
-        if ($contaOrigem->getSaldo() < $valor) {
+        if ($dados['conta_origem']->getSaldo() < $dados['valor']) {
             echo "Erro: saldo insuficiente.";
             die();
         }

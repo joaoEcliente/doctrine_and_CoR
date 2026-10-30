@@ -12,16 +12,11 @@ class RealizacaoPix extends Handler {
 
     public function processar(?array $dados = null): bool
     {
-        // GET os resultodos do array lá
-        $conta_origem = $dados['conta_origem'];
-        $conta_destino = $dados['conta_destino'];
-        $valor = $dados['valor'];
-
         // Declara o novo saldo a cada conta
-        $conta_origem->setSaldo($conta_origem->getSaldo() - $valor);
-        $conta_destino->setSaldo($conta_destino->getSaldo() + $valor);
+        $dados['conta_origem']->setSaldo($dados['conta_origem']->getSaldo() - $dados['valor']);
+        $dados['conta_destino']->setSaldo($dados['conta_destino']->getSaldo() + $dados['valor']);
 
-        // Transação informações
+        // Transação Dados
         $transacao = new Transacao_pix();
 
         $conn = $this->entityManager->getConnection();
@@ -30,20 +25,21 @@ class RealizacaoPix extends Handler {
         try
         {
             $transacao
-                ->ContaOrigem($conta_origem)
-                ->ContaDestino($conta_destino)
-                ->setValor($valor)
+                ->ContaOrigem($dados['conta_origem'])
+                ->ContaDestino($dados['conta_destino'])
+                ->setValor($dados['valor'])
             ;
 
             $this->entityManager->persist($transacao);
             $this->entityManager->flush();
 
-            echo "PIX REALIZADO COM SUCESSO!!";
+            echo "PIX REALIZADO COM SUCESSO!!\n";
 
+            throw new Exception("Testando Rollback\n");
             $conn->commit();
 
         } catch (Exception $e) {
-            echo 'Erro ao realizar transação, tente novamente mais tarde ou entre em contato com o suporte.';
+            echo "Erro ao realizar transação, tente novamente mais tarde ou entre em contato com o suporte.\n";
             $conn->rollBack();
 
         }
