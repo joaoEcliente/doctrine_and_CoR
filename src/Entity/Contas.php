@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class Contas
 {
-    private ?string $id = null;
+    private ?int $id = null;
     private string $titular;
     private string $chavePix;
     private int $saldo;
@@ -14,12 +14,18 @@ class Contas
         return $this->id;
     }
 
-    public function getTitular(): ?string
+    public function setId(int $id): Contas
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getTitular(): string
     {
         return $this->titular;
     }
 
-    public function setTitular(string $titular): self
+    public function setTitular(string $titular)
     {
         $this->titular = $titular;
         return $this;
@@ -30,20 +36,26 @@ class Contas
         return $this->chavePix;
     }
 
-    public function setChavePix(?string $chavePix): self
+    public function setChavePix(string $chavePix)
     {
         $this->chavePix = $chavePix;
         return $this;
     }
 
-    public function getSaldo(): ?int
+    public function getSaldo(): int
     {
         return $this->saldo;
     }
 
-    public function setSaldo(?int $saldo): self
+    public function setSaldo(int $saldo)
     {
         $this->saldo = $saldo;
+        return $this;
+    }
+
+    public function getIdContaTansacao(?Contas $conta)
+    {
+        $conta->getId();
         return $this;
     }
 }

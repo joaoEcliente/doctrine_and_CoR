@@ -11,8 +11,9 @@ class ValidarContas extends Handler
         private EntityManagerInterface $entityManager
     ) { }
 
-    public function processar(array $dados): bool
+    public function processar(?array $dados = null): bool
     {
+        echo "2. Validar contas\n";
         if (!isset($dados['conta_origem']) || !isset($dados['conta_destino'])) {
             echo "Erro: informe as contas de origem e destino.";
             return false;
@@ -30,15 +31,13 @@ class ValidarContas extends Handler
 
         if (!$contaOrigem || !$contaDestino) {
             echo "Erro: conta de origem ou destino não encontrada.";
-            return false;
+            die();
         }
 
         $dados['conta_origem'] = $contaOrigem;
         $dados['conta_destino'] = $contaDestino;
-        if ($this->proximo !== null) {
-            return $this->proximo->processar($dados);
-        }
 
-        return true;
+        // var_dump($dados);exit;
+        return parent::processar($dados);
     }
 }
