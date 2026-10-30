@@ -15,9 +15,9 @@ class KeyChain {
     public function Handler()
     {
         $dados = [
-                  'valor' => 9900,
-                  'conta_origem' => 1,
-                  'conta_destino' => 3
+                  'valor' => 100,
+                  'conta_origem' => 3,
+                  'conta_destino' => 2
                  ];
 
         $chain =  new ValidarValor();
@@ -29,6 +29,5 @@ class KeyChain {
 
         $chain->processar($dados);
 
-}
-
+    }
 }

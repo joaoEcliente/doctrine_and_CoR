@@ -9,7 +9,7 @@ class ValidarValor extends Handler
         echo "1. valida valor.\n";
         if (!isset($dados['valor'])) {
             echo "Erro: valor não informado.";
-            return false;
+            die();
         }
 
         if (!is_numeric($dados['valor']) || $dados['valor'] <= 0) {

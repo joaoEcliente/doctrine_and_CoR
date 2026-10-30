@@ -14,9 +14,6 @@ class Transacao_pix
     private ?Contas $contaDestino;
     private ?DateTimeInterface $dataPix = null;
     
-    // private ?int $contaOrigem;
-    // private ?int $contaDestino;
-    
     public function __construct(
         private string $status = 'T',
     )
@@ -62,22 +59,14 @@ class Transacao_pix
         return $this;
     }
 
-
-
-
-
     public function ContaOrigem(?Contas $contaOrigem)
     {
-        // $id = $contaOrigem->getId();
-        // $this->contaOrigem = $id;
         $this->contaOrigem = $contaOrigem;
         return $this;
     }
 
     public function ContaDestino(?Contas $contaDestino)
     {
-        // $id = $contaDestino->getId();
-        // $this->contaDestino = $id;
         $this->contaDestino = $contaDestino;
         return $this;
     }
