@@ -4,35 +4,20 @@
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="App\Entity\Transacao_pix" table="transacao_pix">
-
-        <id name="id" type="bigint" column="id">
-            <generator strategy="IDENTITY"/>
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
         </id>
 
-        <field name="valor" type="integer" nullable="false"/>
+        <field name="valor" type="integer"/>
+        <field name="status" type="string" column="status"/>
+        <field name="dataPix" column="data_Pix" type="datetime"/>
 
-        <!-- O ENUM do banco será tratado como string pelo Doctrine -->
-        <field name="status" type="string" column="status" nullable="false"/>
-
-        <field name="dataPix"
-               column="data_Pix"
-               type="datetime"
-               nullable="true"
-               insertable="false"
-               updatable="false"/>
-
-        <many-to-one field="contaOrigem"
-                     target-entity="App\Entity\Contas">
-            <join-column name="conta_origem_id"
-                         referenced-column-name="id"
-                         nullable="true"/>
+        <many-to-one field="contaOrigem" target-entity="App\Entity\Contas">
+            <join-column name="conta_origem_id" referenced-column-name="id"/>
         </many-to-one>
 
-        <many-to-one field="contaDestino"
-                     target-entity="App\Entity\Contas">
-            <join-column name="conta_destino_id"
-                         referenced-column-name="id"
-                         nullable="true"/>
+        <many-to-one field="contaDestino" target-entity="App\Entity\Contas">
+            <join-column name="conta_destino_id" referenced-column-name="id"/>
         </many-to-one>
 
     </entity>

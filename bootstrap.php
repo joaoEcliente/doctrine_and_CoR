@@ -14,13 +14,14 @@ $config = ORMSetup::createXMLMetadataConfig(
     isDevMode: true,
 );
 
+$config->enableNativeLazyObjects(true);
 $config->setProxyDir(__DIR__ . '/proxies');
 $config->setProxyNamespace('67bank\Proxies');
 
 $param = [
     'driver'   => 'pdo_mysql',
     'user'     => 'root',
-    'password' => '',
+    'password' => 'toor',
     'dbname'   => '67bank'
     ];
 

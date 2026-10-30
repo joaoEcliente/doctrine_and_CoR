@@ -4,8 +4,9 @@ namespace App\Chain;
 
 class ValidarValor extends Handler
 {
-    public function processar(array $dados): bool
+    public function processar(?array $dados = null): bool
     {
+        echo "1. valida valor.\n";
         if (!isset($dados['valor'])) {
             echo "Erro: valor não informado.";
             return false;
@@ -13,13 +14,9 @@ class ValidarValor extends Handler
 
         if (!is_numeric($dados['valor']) || $dados['valor'] <= 0) {
             echo "Erro: o valor do PIX deve ser maior que zero.";
-            return false;
+            die();
         }
 
-        if ($this->proximo !== null) {
-            return $this->proximo->processar($dados);
-        }
-
-        return true;
+        return parent::processar($dados);
     }
 }
