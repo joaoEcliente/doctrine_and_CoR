@@ -16,7 +16,7 @@ class RealizacaoPix extends Handler {
         $dados['conta_origem']->setSaldo($dados['conta_origem']->getSaldo() - $dados['valor']);
         $dados['conta_destino']->setSaldo($dados['conta_destino']->getSaldo() + $dados['valor']);
 
-        // Transação informações
+        // Transação Dados
         $transacao = new Transacao_pix();
 
         $conn = $this->entityManager->getConnection();
@@ -35,7 +35,7 @@ class RealizacaoPix extends Handler {
 
             echo "PIX REALIZADO COM SUCESSO!!\n";
 
-            // throw new Exception("Testando Rollback\n");
+            throw new Exception("Testando Rollback\n");
             $conn->commit();
 
         } catch (Exception $e) {
