@@ -14,6 +14,80 @@ O principal objetivo é desenvolver uma aplicação com código organizado, de f
 - **Chain of Responsibility (CoR)** — Padrão de projeto utilizado para organizar e estruturar o fluxo de processamento dos pagamentos.
 - **XML Mapping** — Mapeamento das entidades e seus relacionamentos com o banco de dados.
 
+## Como executar:
+### 1. Instalação do Banco De Dados
+Entrar no MySql e executar a sequência de comandos abaixo:
+```
+    CREATE DATABASE 67bank;
+
+    USE 67bank;
+
+    CREATE TABLE contas(
+        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+        titular VARCHAR(255) NOT NULL,
+        chave_pix VARCHAR(100) UNIQUE NOT NULL,
+        saldo INT NOT NULL
+    );
+
+    CREATE TABLE transacao_pix(
+        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+        conta_origem_id BIGINT,
+        conta_destino_id BIGINT,
+        valor INT NOT NULL,
+        status ENUM('T', 'F') NOT NULL,
+        data_Pix DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    ALTER TABLE transacao_pix ADD CONSTRAINT fk_conta_origem FOREIGN KEY (conta_origem_id) REFERENCES contas(id);
+    ALTER TABLE transacao_pix ADD CONSTRAINT fk_conta_destino FOREIGN KEY (conta_destino_id) REFERENCES contas(id);
+
+    INSERT INTO contas (id, titular, chave_pix, saldo) VALUES
+    (1, 'Ana Silva', 'ana.silva@email.com', 50000),
+    (2, 'Bruno Souza', 'bruno.souza@email.com', 0),
+    (3, 'Carla Dias', 'carla.dias@email.com', 10000);
+
+    valor INT NOT NULL,
+    status ENUM('T', 'F') NOT NULL,
+``` 
+
+## 2. Clonar o repositório:
+```
+    $ git clone git@github.com:joaodamasio22/doctrine_and_CoR.git 
+```
+
+## 3. Inicialização do composer:
+```
+    $ composer init
+```
+
+## 4. Baixando as bibliotecas:
+Acessar o arquivo ```composer.json``` e segue as seguintes alterações:
+```
+    "psr-4": {
+            "App\\": "src/"
+        }
+```
+
+```
+    "require": {
+        "doctrine/orm": "^3",
+        "doctrine/dbal": "^4",
+        "symfony/cache": "^7"
+    }
+```
+
+Instalar as bibliotecas:
+```
+    $ composer install
+```
+
+## 5. Declarar valor e para qualconta deseja fazer o pix está em ```$dados = [...]``` dentro de "src/Services/KeyChain.php"
+
+## 6. Agora é so executar, lembre-se de estar na raíz do projeto, para poder executar:
+```
+    $ php index.php
+```
+
 ## Arquitetura e Desenvolvimento
 
 A aplicação utiliza o padrão de projeto **Chain of Responsibility (CoR)** para estruturar o processamento das transações PIX em diferentes etapas.
