@@ -55,28 +55,7 @@ Entrar no MySql e executar a sequência de comandos abaixo:
     $ git clone git@github.com:joaodamasio22/doctrine_and_CoR.git 
 ```
 
-## 3. Inicialização do composer:
-```
-    $ composer init
-```
-
-## 4. Baixando as bibliotecas:
-Acessar o arquivo ```composer.json``` e segue as seguintes alterações:
-```
-    "psr-4": {
-            "App\\": "src/"
-        }
-```
-
-```
-    "require": {
-        "doctrine/orm": "^3",
-        "doctrine/dbal": "^4",
-        "symfony/cache": "^7"
-    }
-```
-
-Instalar as bibliotecas:
+## 3. Instalar as bibliotecas:
 ```
     $ composer install
 ```
